@@ -5,8 +5,10 @@ PROJECT (HDF5_SRC C CXX)
 
 #-----------------------------------------------------------------------------
 # Apply Definitions to compiler in this directory and below
-#-----------------------------------------------------------------------------
+#----------------------------------------------------------------------------
 add_definitions (${HDF_EXTRA_C_FLAGS})
+include_directories(/home/saksham/work/cmu/hdf5/deltafs/src/deltafs-umbrella-build/deltafs-prefix/src/deltafs/include/deltafs)
+link_directories(/home/saksham/work/cmu/hdf5/deltafs/src/deltafs-umbrella-build/deltafs-prefix/src/deltafs-build/src/libdeltafs/)
 
 #-----------------------------------------------------------------------------
 # List Source Files
@@ -47,10 +49,7 @@ IDE_GENERATED_PROPERTIES ("H5A" "${H5A_HDRS}" "${H5A_SOURCES}" )
 
 set (H5AC_SOURCES
     ${HDF5_SRC_DIR}/H5AC.c
-    ${HDF5_SRC_DIR}/H5ACdbg.c
-    ${HDF5_SRC_DIR}/H5AClog.c
     ${HDF5_SRC_DIR}/H5ACmpio.c
-    ${HDF5_SRC_DIR}/H5ACproxy_entry.c
 )
 
 set (H5AC_HDRS
@@ -77,8 +76,6 @@ set (H5B2_SOURCES
     ${HDF5_SRC_DIR}/H5B2dbg.c
     ${HDF5_SRC_DIR}/H5B2hdr.c
     ${HDF5_SRC_DIR}/H5B2int.c
-    ${HDF5_SRC_DIR}/H5B2internal.c
-    ${HDF5_SRC_DIR}/H5B2leaf.c
     ${HDF5_SRC_DIR}/H5B2stat.c
     ${HDF5_SRC_DIR}/H5B2test.c
 )
@@ -91,15 +88,7 @@ IDE_GENERATED_PROPERTIES ("H5B2" "${H5B2_HDRS}" "${H5B2_SOURCES}" )
 
 set (H5C_SOURCES
     ${HDF5_SRC_DIR}/H5C.c
-    ${HDF5_SRC_DIR}/H5Cdbg.c
-    ${HDF5_SRC_DIR}/H5Cepoch.c
-    ${HDF5_SRC_DIR}/H5Cimage.c
-    ${HDF5_SRC_DIR}/H5Clog.c
     ${HDF5_SRC_DIR}/H5Cmpio.c
-    ${HDF5_SRC_DIR}/H5Cprefetched.c
-    ${HDF5_SRC_DIR}/H5Cquery.c
-    ${HDF5_SRC_DIR}/H5Ctag.c
-    ${HDF5_SRC_DIR}/H5Ctest.c
 )
 set (H5C_HDRS
     ${HDF5_SRC_DIR}/H5Cpkg.h
@@ -133,11 +122,9 @@ set (H5D_SOURCES
     ${HDF5_SRC_DIR}/H5Dio.c
     ${HDF5_SRC_DIR}/H5Dlayout.c
     ${HDF5_SRC_DIR}/H5Dmpio.c
-    ${HDF5_SRC_DIR}/H5Dnone.c
     ${HDF5_SRC_DIR}/H5Doh.c
     ${HDF5_SRC_DIR}/H5Dscatgath.c
     ${HDF5_SRC_DIR}/H5Dselect.c
-    ${HDF5_SRC_DIR}/H5Dsingle.c
     ${HDF5_SRC_DIR}/H5Dtest.c
     ${HDF5_SRC_DIR}/H5Dvirtual.c
 )
@@ -183,6 +170,10 @@ set (H5EA_HDRS
 )
 IDE_GENERATED_PROPERTIES ("H5EA" "${H5EA_HDRS}" "${H5EA_SOURCES}" )
 
+set (H5ES_HDRS
+    ${HDF5_SRC_DIR}/H5ESpublic.h
+)
+IDE_GENERATED_PROPERTIES ("H5ES" "${H5ES_HDRS}" "" )
 
 set (H5F_SOURCES
     ${HDF5_SRC_DIR}/H5F.c
@@ -198,7 +189,6 @@ set (H5F_SOURCES
     ${HDF5_SRC_DIR}/H5Fmpi.c
     ${HDF5_SRC_DIR}/H5Fquery.c
     ${HDF5_SRC_DIR}/H5Fsfile.c
-    ${HDF5_SRC_DIR}/H5Fspace.c
     ${HDF5_SRC_DIR}/H5Fsuper.c
     ${HDF5_SRC_DIR}/H5Fsuper_cache.c
     ${HDF5_SRC_DIR}/H5Ftest.c
@@ -218,7 +208,6 @@ set (H5FA_SOURCES
     ${HDF5_SRC_DIR}/H5FAdblkpage.c
     ${HDF5_SRC_DIR}/H5FAdblock.c
     ${HDF5_SRC_DIR}/H5FAhdr.c
-    ${HDF5_SRC_DIR}/H5FAint.c
     ${HDF5_SRC_DIR}/H5FAstat.c
     ${HDF5_SRC_DIR}/H5FAtest.c
 )
@@ -241,7 +230,6 @@ set (H5FD_SOURCES
     ${HDF5_SRC_DIR}/H5FDsec2.c
     ${HDF5_SRC_DIR}/H5FDspace.c
     ${HDF5_SRC_DIR}/H5FDstdio.c
-    ${HDF5_SRC_DIR}/H5FDtest.c
     ${HDF5_SRC_DIR}/H5FDwindows.c
 )
 
@@ -282,7 +270,6 @@ set (H5FS_SOURCES
     ${HDF5_SRC_DIR}/H5FS.c
     ${HDF5_SRC_DIR}/H5FScache.c
     ${HDF5_SRC_DIR}/H5FSdbg.c
-    ${HDF5_SRC_DIR}/H5FSint.c
     ${HDF5_SRC_DIR}/H5FSsection.c
     ${HDF5_SRC_DIR}/H5FSstat.c
     ${HDF5_SRC_DIR}/H5FStest.c
@@ -445,7 +432,6 @@ set (H5O_SOURCES
     ${HDF5_SRC_DIR}/H5Obogus.c
     ${HDF5_SRC_DIR}/H5Obtreek.c
     ${HDF5_SRC_DIR}/H5Ocache.c
-    ${HDF5_SRC_DIR}/H5Ocache_image.c
     ${HDF5_SRC_DIR}/H5Ochunk.c
     ${HDF5_SRC_DIR}/H5Ocont.c
     ${HDF5_SRC_DIR}/H5Ocopy.c
@@ -454,7 +440,6 @@ set (H5O_SOURCES
     ${HDF5_SRC_DIR}/H5Odtype.c
     ${HDF5_SRC_DIR}/H5Oefl.c
     ${HDF5_SRC_DIR}/H5Ofill.c
-    ${HDF5_SRC_DIR}/H5Oflush.c
     ${HDF5_SRC_DIR}/H5Ofsinfo.c
     ${HDF5_SRC_DIR}/H5Oginfo.c
     ${HDF5_SRC_DIR}/H5Olayout.c
@@ -508,22 +493,12 @@ set (H5P_HDRS
 )
 IDE_GENERATED_PROPERTIES ("H5P" "${H5P_HDRS}" "${H5P_SOURCES}" )
 
-set (H5PB_SOURCES
-    ${HDF5_SRC_DIR}/H5PB.c
-)
-
-set (H5PB_HDRS
-    ${HDF5_SRC_DIR}/H5PBpkg.h
-)
-IDE_GENERATED_PROPERTIES ("H5PB" "${H5PB_HDRS}" "${H5PB_SOURCES}" )
-
 set (H5PL_SOURCES
     ${HDF5_SRC_DIR}/H5PL.c
 )
 
 set (H5PL_HDRS
     ${HDF5_SRC_DIR}/H5PLextern.h
-    ${HDF5_SRC_DIR}/H5PLpkg.h
     ${HDF5_SRC_DIR}/H5PLpublic.h
 )
 IDE_GENERATED_PROPERTIES ("H5PL" "${H5PL_HDRS}" "${H5PL_SOURCES}" )
@@ -653,6 +628,19 @@ set (H5VM_HDRS
 )
 IDE_GENERATED_PROPERTIES ("H5VM" "${H5VM_HDRS}" "${H5VM_SOURCES}" )
 
+SET (H5VL_SOURCES
+    ${HDF5_SRC_DIR}/H5VL.c
+    ${HDF5_SRC_DIR}/H5VLint.c
+    ${HDF5_SRC_DIR}/H5VLnative.c
+    ${HDF5_SRC_DIR}/H5VLdeltafs.c
+)
+SET (H5VL_HDRS
+    ${HDF5_SRC_DIR}/H5VLpublic.h
+    ${HDF5_SRC_DIR}/H5VLpkg.h
+    ${HDF5_SRC_DIR}/H5VLdeltafs.h
+)
+IDE_GENERATED_PROPERTIES ("H5VL" "${H5VL_HDRS}" "${H5VL_SOURCES}" )
+
 
 set (H5WB_SOURCES
     ${HDF5_SRC_DIR}/H5WB.c
@@ -713,7 +701,6 @@ set (common_SRCS
     ${H5MP_SOURCES}
     ${H5O_SOURCES}
     ${H5P_SOURCES}
-    ${H5PB_SOURCES}
     ${H5PL_SOURCES}
     ${H5R_SOURCES}
     ${H5UC_SOURCES}
@@ -725,6 +712,7 @@ set (common_SRCS
     ${H5T_SOURCES}
     ${H5TS_SOURCES}
     ${H5VM_SOURCES}
+    ${H5VL_SOURCES}
     ${H5WB_SOURCES}
     ${H5Z_SOURCES}
 )
@@ -754,12 +742,12 @@ set (H5_PUBLIC_HEADERS
     ${H5MP_HDRS}
     ${H5O_HDRS}
     ${H5P_HDRS}
-    ${H5PB_HDRS}
     ${H5PL_HDRS}
     ${H5R_HDRS}
     ${H5S_HDRS}
     ${H5SM_HDRS}
     ${H5T_HDRS}
+    ${H5VL_HDRS}
     ${H5Z_HDRS}
     ${HDF5_SRC_DIR}/vtk_hdf5_mangle.h
 )
@@ -794,7 +782,6 @@ set (H5_PRIVATE_HEADERS
     ${HDF5_SRC_DIR}/H5MPprivate.h
     ${HDF5_SRC_DIR}/H5Oprivate.h
     ${HDF5_SRC_DIR}/H5Pprivate.h
-    ${HDF5_SRC_DIR}/H5PBprivate.h
     ${HDF5_SRC_DIR}/H5PLprivate.h
     ${HDF5_SRC_DIR}/H5UCprivate.h
     ${HDF5_SRC_DIR}/H5Rprivate.h
@@ -806,6 +793,7 @@ set (H5_PRIVATE_HEADERS
     ${HDF5_SRC_DIR}/H5Tprivate.h
     ${HDF5_SRC_DIR}/H5TSprivate.h
     ${HDF5_SRC_DIR}/H5VMprivate.h
+    ${HDF5_SRC_DIR}/H5VLprivate.h
     ${HDF5_SRC_DIR}/H5WBprivate.h
     ${HDF5_SRC_DIR}/H5Zprivate.h
     ${HDF5_SRC_DIR}/H5win32defs.h
@@ -934,7 +922,7 @@ if (BUILD_SHARED_LIBS)
 endif ()
 target_link_libraries(vtkhdf5_src
   PRIVATE
-    ${vtkzlib_LIBRARIES})
+    ${vtkzlib_LIBRARIES} deltafs)
 
 if (DEFINED VTK_CUSTOM_LIBRARY_SUFFIX)
   set(_lib_suffix "${VTK_CUSTOM_LIBRARY_SUFFIX}")
